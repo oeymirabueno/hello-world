@@ -132,8 +132,8 @@ public class BTreeStructure {
 		
 
 	}
-	int search(long key) {
-
+	long select(long key) {
+		//search for key_offsetvalue of given key within the tree
 		return 0;//key_offsetvalue
 	}
 }

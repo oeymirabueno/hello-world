@@ -19,6 +19,10 @@ public class btdb {
 			if(comm[0].equals("exit")) {
 				break;
 			}
+			//invalid command rejector
+			else if (!comm[0].equals("insert")||!comm[0].equals("select")||!comm[0].equals("update")) {
+				System.out.println("ERROR: invalid command");
+			}
 			else {
 				commandLine(values, btree, commline);
 			}
@@ -36,10 +40,28 @@ public class btdb {
 		//insert function. will resolve commands eventually
 		//functions: insert, update, select, exit
 		//separate function calls per set? or if functions?
+
+		if(command.equals("insert")){
+			insert(values, btree, record, key);
+		}
+		else if(command.equals("update")){
+			update(values, btree, record, key);
+		}
+		else if(command.equals("select")){
+			select(values, btree, key);
+		}
+
+	}
+	public static void insert(ValuesRecords values, BTreeStructure btree, String record, long key) throws IOException{
 		values.insert(record);
 		btree.insert(key, values.RECORDCOUNT);
 	}
-	public static void insert() {
-		
+	public static void update(ValuesRecords values, BTreeStructure btree, String record, long key) throws IOException{
+		long key_offsetvalue = btree.select(key);
+		values.update(record, key_offsetvalue);
+	}
+	public static void select(ValuesRecords values, BTreeStructure btree, long key) throws IOException{
+		long key_offsetvalue = btree.select(key);
+		values.select(key_offsetvalue);
 	}
 }
