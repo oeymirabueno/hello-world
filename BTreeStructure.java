@@ -134,6 +134,17 @@ public class BTreeStructure {
 	}
 	long select(long key) {
 		//search for key_offsetvalue of given key within the tree
+		//algorithm:
+			//1. proceed to root node.
+			//		CURRENT_NODE_POSITION = ROOT_VALUE,
+			//		CURRENT_KEY_POSITION = 0;
+			//2. compare per key. if key=comparedTo, return key_offsetvalue.
+			//2.1. if key>comparedTo, next key (CURRENT_KEY_POSITION++).
+			//2.2 if key<comparedTo, check if child is empty.
+			//2.2.1 if child is empty, perform shifting.
+			//2.2.2 if child is !empty, set:
+			//		CURRENT_NODE_POSITION = Child_ID
+			//		CURRENT_KEY_POSITION = 0;
 		return 0;//key_offsetvalue
 	}
 }
