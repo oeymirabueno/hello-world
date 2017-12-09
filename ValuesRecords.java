@@ -43,10 +43,13 @@ class ValuesRecords {
 
 
 	}
-	String select (int key) throws IOException{
-		return "";
+	void select (long key_offsetvalue) throws IOException{
+		thing.seek(RECORD_OFFSET+(key_offsetvalue)*VALUE_SIZE);
+		System.out.println(thing.readUTF());
 	}
-	void update (String data) throws IOException{
-		return;
+	void update (String data, long key_offsetvalue) throws IOException{
+		thing.seek(RECORD_OFFSET+(key_offsetvalue)*VALUE_SIZE);
+		thing.writeShort(data.length());
+		thing.write(data.getBytes("UTF8"), 0, data.length());
 	}
 }
